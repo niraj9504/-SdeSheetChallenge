@@ -1,4 +1,4 @@
-//method 1(see other solutions of leetcode)***
+//method 1(see other solutions of leetcode)*** and striver solution for this MOORE's voting algo.
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
