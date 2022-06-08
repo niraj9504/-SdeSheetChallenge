@@ -1,4 +1,4 @@
-//learn it **vvi
+//learn it(merge sort method) **vvi and look for fenwick tree method
 #include <bits/stdc++.h> 
 vector<int> temp;
 int merge(long long *nums,vector<int> &temp,int s,int m,int e){
