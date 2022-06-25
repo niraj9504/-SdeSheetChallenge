@@ -27,7 +27,7 @@ int Solution::findMedian(vector<vector<int> > &matrix) {
 //m2 (easy)
 int Solution::findMedian(vector<vector<int> > &A) {
     int m=A.size(),n=A[0].size();
-    for(int r=m-1;r>0;r--){
+    for(int r=m-1;r>0;r--){//first row not included because we are adding all elements in this row
         for(int c=0;c<n;c++){
             A[0].push_back(A[r][c]);
         }
