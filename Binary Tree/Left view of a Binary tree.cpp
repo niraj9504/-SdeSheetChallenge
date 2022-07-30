@@ -20,14 +20,14 @@ vector<int> getLeftView(TreeNode<int> *root)
 
 void dfs(TreeNode<int> *root,int h,vector<int> &ans){
     if(root==NULL)return;
-    if(h>=ans.size())ans.push_back(root->data);
+    if(h==ans.size())ans.push_back(root->data);
     dfs(root->left,h+1,ans);
     dfs(root->right,h+1,ans);
 }
 vector<int> getLeftView(TreeNode<int> *root)
 {    
     vector<int> ans;
-    if(root==NULL)return ans;
+    //if(root==NULL)return ans;
     dfs(root,0,ans);
     return ans;
 }
