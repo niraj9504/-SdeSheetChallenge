@@ -37,3 +37,28 @@ public:
         return ans;
     }
 };
+
+//codestudio
+#include<bits/stdc++.h>
+vector<int> zigZagTraversal(BinaryTreeNode<int> *root)
+{
+    vector<int> ans;
+    if(root==NULL)return ans;
+    queue<BinaryTreeNode<int> *>q;
+    q.push(root);
+    int sign=1;
+    while(!q.empty()){
+        int sz=q.size();
+        vector<int> level(sz);
+        for(int i=0;i<sz;i++){
+            auto it=q.front();q.pop();
+            int idx=(sign==1)?i:sz-1-i;
+            level[idx]=it->data;
+            if(it->left)q.push(it->left);
+            if(it->right)q.push(it->right);
+        }
+        sign*=-1;
+        ans.insert(ans.end(),level.begin(),level.end());
+    }
+    return ans;
+}
