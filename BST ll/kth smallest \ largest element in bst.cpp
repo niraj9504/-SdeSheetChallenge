@@ -27,3 +27,19 @@ public:
         return ans;
     }
 };
+
+
+//kth largest
+    int ans;
+    void revinorder(Node *root, int &k){
+        if(root==NULL)return;
+        revinorder(root->right,k);
+        --k;
+        if(k==0)ans=root->data;
+        revinorder(root->left,k);
+    }
+    int kthLargest(Node *root, int k)
+    {
+        revinorder(root,k);
+        return ans;
+    }
