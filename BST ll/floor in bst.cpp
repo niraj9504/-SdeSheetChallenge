@@ -1,4 +1,8 @@
 //imp
+
+//** root->val <= key we want lesser or equal value
+
+
 /************************************************************
 
     Following is the TreeNode class structure
