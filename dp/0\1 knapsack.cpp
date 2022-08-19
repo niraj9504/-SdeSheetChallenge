@@ -67,3 +67,84 @@ public:
 //count 1's another method
 int x = count(s.begin(),s.end(),'1');
             int y = s.size()-x;
+
+//codestudio 0/1 knapsack
+//TLE
+#include<bits/stdc++.h>
+int solve(int i,vector<int> &val,vector<int> &wt,int w){
+    if(i==val.size()){
+        return 0;
+    }
+    int cost=solve(i+1,val,wt,w);
+    if(w-wt[i]>=0)
+        cost=max(cost,solve(i+1,val,wt,w-wt[i])+val[i]);
+    return cost;
+}
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{
+	return solve(0,val,wt,w);
+}
+
+//top-down(memoization)
+#include<bits/stdc++.h>
+int solve(int i,vector<int> &val,vector<int> &wt,int w,vector<vector<int>> &dp){
+    if(i==val.size()){
+        return 0;
+    }
+    if(dp[i][w]!=-1)return dp[i][w];
+    int cost=solve(i+1,val,wt,w,dp);
+    if(w-wt[i]>=0)
+        cost=max(cost,solve(i+1,val,wt,w-wt[i],dp)+val[i]);
+    return dp[i][w]=cost;
+}
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{    
+    vector<vector<int>> dp(n,vector<int>(w+1,-1));
+	return solve(0,val,wt,w,dp);
+}
+//bottom up
+
+#include<bits/stdc++.h>
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{    
+    vector<vector<int>> dp(n+1,vector<int>(w+1,0));
+    
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=w;j++){
+            if(j-wt[i-1]>=0)
+                dp[i][j]=max(dp[i-1][j],dp[i-1][j-wt[i-1]]+val[i-1]);
+            else
+                dp[i][j]=dp[i-1][j];
+        }
+    }
+    return dp[n][w];
+}
+or
+ #include<bits/stdc++.h>
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{    
+    vector<vector<int>> dp(n+1,vector<int>(w+1,0));
+    
+    for(int i=1;i<=n;i++){
+        for(int j=w;j>=0;j--){
+            if(j-wt[i-1]>=0)
+                dp[i][j]=max(dp[i-1][j],dp[i-1][j-wt[i-1]]+val[i-1]);
+            else
+                dp[i][j]=dp[i-1][j];
+        }
+    }
+    return dp[n][w];
+}
+//see codestudion solution
+#include<bits/stdc++.h>
+int maxProfit(vector<int> &val, vector<int> &wt, int n, int w)
+{    
+    vector<int> dp(w+1,0);
+    
+    for(int i=0;i<=n;i++){
+        for(int j=w;j>=wt[i];j--){
+            dp[j]=max(dp[j],dp[j-wt[i]]+val[i]);
+        }
+    }
+    return dp[w];
+}
